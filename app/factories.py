@@ -7,7 +7,7 @@ class ClientFactory(factory.Factory):
     name = Faker('first_name')
     surname = Faker('last_name')
     credit_card = LazyAttribute(
-        lambda x: None if Faker('boolean')() else Faker('credit_card_number')()
+        lambda x: None if Faker('boolean')() else Faker('credit_card_number').generate()
     )
     car_number = Faker('license_plate')
 
@@ -19,3 +19,4 @@ class ParkingFactory(factory.Factory):
     opened = Faker('boolean')
     count_places = Faker('random_int', min=1, max=100)
     count_available_places = LazyAttribute(lambda obj: obj.count_places)
+
