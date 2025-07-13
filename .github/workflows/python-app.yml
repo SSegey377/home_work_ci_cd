@@ -1,9 +1,7 @@
 name: Test
 
 on:
-  push:
-    branches:
-      - main  # Должен быть пробел между дефисом и именем ветки
+  pull_request:
 
 jobs:
   test:
