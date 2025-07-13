@@ -25,6 +25,17 @@ jobs:
           echo "global_env  ${{ env.PEREMEN_1  }}"
           echo "global_env  ${{ env.PEREMEN_2  }}"
 
+      - name: list folder ls 
+        run: ls -la
+
+
+      - name: GIT clone
+        uses: actions/checkout@v1 #копирования репозитория
+
+      - name: list folder ls befor
+        run: ls -la
+        
+
   
   
   
