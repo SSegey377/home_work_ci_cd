@@ -20,10 +20,10 @@ jobs:
         
       - name: print_SHA_peremennie_testing1
         run: |
-          echo:"message5"
-          echo:"message777"
-          echo:"global_env  ${{ env.PEREMEN_1  }}"
-          echo:"global_env  ${{ env.PEREMEN_2  }}"
+          echo "message5"
+          echo "message777"
+          echo "global_env  ${{ env.PEREMEN_1  }}"
+          echo "global_env  ${{ env.PEREMEN_2  }}"
 
   
   
@@ -41,10 +41,10 @@ jobs:
 
       - name: print_SHA_peremennie_testing1
         run: |
-          echo:"mes____5"
-          echo:"mes_____777"
-          echo:"global_env____2  ${{ env.PEREMEN_1  }}"
-          echo:"global_env___2  ${{ env.PEREMEN_2  }}"
+          echo "mes____5"
+          echo "mes_____777"
+          echo "global_env____2  ${{ env.PEREMEN_1  }}"
+          echo "global_env___2  ${{ env.PEREMEN_2  }}"
           
 
 
