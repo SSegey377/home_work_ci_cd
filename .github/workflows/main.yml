@@ -1,4 +1,4 @@
-name: Test
+name: Test_name_123
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   
 
 jobs:
-  testing_1:
+  testing_1111:
   
     runs-on: ubuntu-latest
     steps:
@@ -15,7 +15,7 @@ jobs:
         run: echo "hello world"
 
 
-  testing_2:
+  testing_222:
   
     runs-on: ubuntu-latest
     steps:
