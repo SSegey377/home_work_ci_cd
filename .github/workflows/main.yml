@@ -3,25 +3,20 @@ name: Test_name_123
 on:
   push:
     branches: 
-      -master
-  
+      - master  # Должен быть пробел между дефисом и именем ветки
 
 jobs:
   testing_1111:
-  
     runs-on: ubuntu-latest
     steps:
-      - name: mesadge
+      - name: message  # Исправлено написание с "mesadge" на "message"
         run: echo "hello world"
 
-
   testing_222:
-  
     runs-on: ubuntu-latest
     steps:
-      - name: mesadge_22
-        run: echo "hello world  gay"
-        
+      - name: message_22  # Исправлено написание с "mesadge_22" на "message_22"
+        run: echo "hello gay"  
           
 
 
