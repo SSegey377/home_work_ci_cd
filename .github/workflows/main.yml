@@ -8,12 +8,15 @@ on:
 jobs:
   testing_1111:
     runs-on: ubuntu-latest
+    
     steps:
       - name: message  # Исправлено написание с "mesadge" на "message"
         run: echo "hello world"
 
   testing_222:
     runs-on: ubuntu-latest
+    needs: testing_1111
+    
     steps:
       - name: message_22  # Исправлено написание с "mesadge_22" на "message_22"
         run: echo "hello gay"  
