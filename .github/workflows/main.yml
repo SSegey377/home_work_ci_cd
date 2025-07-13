@@ -4,15 +4,32 @@ on:
   push:
     branches: 
       - main  # Должен быть пробел между дефисом и именем ветки
+env:
+  PEREMEN_1: :"hey- ${{ github.sha }}"
+  PEREMEN_2: :"heyuyyyyyyyy  ${{ github.sha }}" 
+
 
 jobs:
+  
   testing_1111:
     runs-on: ubuntu-latest
     
     steps:
       - name: message  # Исправлено написание с "mesadge" на "message"
         run: echo "hello world"
+        
+      - name: print_SHA_peremennie_testing1
+        run: |
+          echo:"message5"
+          echo:"message777"
+          echo:"global_env  ${{ env.PEREMEN_1  }}"
+          echo:"global_env  ${{ env.PEREMEN_2  }}"
 
+  
+  
+  
+  
+  
   testing_222:
     runs-on: ubuntu-latest
     needs: testing_1111
@@ -20,6 +37,14 @@ jobs:
     steps:
       - name: message_22  # Исправлено написание с "mesadge_22" на "message_22"
         run: echo "hello gay"  
+
+
+      - name: print_SHA_peremennie_testing1
+        run: |
+          echo:"mes____5"
+          echo:"mes_____777"
+          echo:"global_env____2  ${{ env.PEREMEN_1  }}"
+          echo:"global_env___2  ${{ env.PEREMEN_2  }}"
           
 
 
