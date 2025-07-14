@@ -50,10 +50,12 @@ def create_client():
 def create_parking():
     data = request.get_json()
     if not data or "address" not in data or "count_places" not in data:
-        return jsonify({"error": "Address and count_places are required"}), 400
+        return jsonify(
+            {"error": "Address and count_places are required"}), 400
     count_places = data["count_places"]
     if not isinstance(count_places, int) or count_places < 0:
-        return jsonify({"error": "count_places must be a non-negative integer"}), 400
+        return jsonify(
+            {"error": "count_places must be a non-negative integer"}), 400
     new_parking = Parking(
         address=data["address"],
         opened=data.get("opened", True),
@@ -79,13 +81,15 @@ def client_parking_in():
     if parking.count_available_places <= 0:
         return jsonify({"error": "No available places"}), 400
     if not client.credit_card:
-        return jsonify({"error": "Client must have a credit card to park"}), 400
+        return jsonify(
+            {"error": "Client must have a credit card to park"}), 400
         # Check if client already parked here without exit
     existing_park = ClientParking.query.filter_by(
         client_id=client_id, parking_id=parking_id, time_out=None
     ).first()
     if existing_park:
-        return jsonify({"error": "Client already parked here and did not exit"}), 400
+        return jsonify(
+            {"error": "Client already parked here and did not exit"}), 400
     new_client_parking = ClientParking(
         client_id=client_id, parking_id=parking_id, time_in=datetime.utcnow()
     )
@@ -110,10 +114,8 @@ def client_parking_out():
             jsonify({"error": "No active park rec found for this client"}),
             404,
         )
-
     client_parking.time_out = datetime.utcnow()
     parking = Parking.query.get_or_404(parking_id)
     parking.count_available_places += 1
     db.session.commit()
-
     return jsonify({"message": "Client has left the parking"}), 200
