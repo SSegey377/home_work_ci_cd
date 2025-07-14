@@ -36,6 +36,7 @@ jobs:
     - name: Run black
       run: |
         black --check app tests
+        black app tests
 
     - name: Run mypy with config
       run: |
