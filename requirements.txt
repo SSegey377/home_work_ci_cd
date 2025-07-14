@@ -10,4 +10,5 @@ isort==5.9.3
 mypy==0.931
 black==22.3.0
 
-types-psycopg2-binary
+#types-psycopg2-binary
+psycopg2-binary
