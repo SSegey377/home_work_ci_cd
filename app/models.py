@@ -32,14 +32,20 @@ class ClientParking(db.Model):
     __tablename__ = "client_parking"
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    client_id = db.Column(db.Integer, db.ForeignKey("client.id"), nullable=False)
-    parking_id = db.Column(db.Integer, db.ForeignKey("parking.id"), nullable=False)
+    client_id = db.Column(
+        db.Integer, db.ForeignKey("client.id"), nullable=False
+    )
+    parking_id = db.Column(
+        db.Integer, db.ForeignKey("parking.id"), nullable=False
+    )
     time_in = db.Column(db.DateTime, nullable=False)
     time_out = db.Column(db.DateTime, nullable=True)
     client = db.relationship("Client", backref="client_parking")
     parking = db.relationship("Parking", backref="client_parking")
     __table_args__ = (
-        db.UniqueConstraint("client_id", "parking_id", name="unique_client_parking"),
+        db.UniqueConstraint(
+            "client_id", "parking_id", name="unique_client_parking"
+        ),
     )
 
     def __repr__(self):
