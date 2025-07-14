@@ -21,5 +21,5 @@ with app.app_context():
     db.session.commit()  # Сохранение изменений в базе данных
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
