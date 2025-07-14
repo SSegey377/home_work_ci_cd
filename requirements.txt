@@ -12,7 +12,7 @@ factory_boy>=2.0.0
 
 Flask==2.0.3
 Werkzeug==2.0.3
-
+Faker
 Flask-SQLAlchemy==2.5.1
 SQLAlchemy==1.4.47
 
