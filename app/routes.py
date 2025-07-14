@@ -1,3 +1,4 @@
+
 from flask import Blueprint, jsonify, request
 from datetime import datetime
 from .models import db, Client, Parking, ClientParking
