@@ -26,7 +26,8 @@ jobs:
         pip install mypy flake8 black pytest
         
         # Устанавливаем типы для проверки mypy
-        pip install types-Flask types-Werkzeug types-flask-sqlalchemy types-psycopg2-binary
+      # pip install types-Flask types-Werkzeug types-flask-sqlalchemy types-psycopg2-binary
+
 
     - name: Run flake8
       run: |
