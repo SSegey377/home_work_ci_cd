@@ -1,22 +1,22 @@
 import factory
-from factory import Faker, LazyAttribute
+from factory import LazyAttribute
+from faker import Faker
 from .models import Client, Parking
+fake = Faker()  # Создаем один экземпляр Faker
 class ClientFactory(factory.Factory):
     class Meta:
         model = Client
-    name = Faker('first_name')
-    surname = Faker('last_name')
-    credit_card = LazyAttribute(
-        lambda x: None if Faker('boolean')() else Faker('credit_card_number').generate()
-    )
-    car_number = Faker('license_plate')
-
+    name = LazyAttribute(lambda _: fake.first_name())
+    surname = LazyAttribute(lambda _: fake.last_name())
+    credit_card = LazyAttribute(lambda _: None if fake.boolean() else fake.credit_card_number())
+    car_number = LazyAttribute(lambda _: fake.license_plate())
 
 class ParkingFactory(factory.Factory):
     class Meta:
         model = Parking
-    address = Faker('address')
-    opened = Faker('boolean')
-    count_places = Faker('random_int', min=1, max=100)
+
+    address = LazyAttribute(lambda _: fake.address())
+    opened = LazyAttribute(lambda _: fake.boolean())
+    count_places = LazyAttribute(lambda _: fake.random_int(min=1, max=100))
     count_available_places = LazyAttribute(lambda obj: obj.count_places)
 
