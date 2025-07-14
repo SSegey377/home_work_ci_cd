@@ -76,7 +76,8 @@ def client_parking_in():
         # Check if client already parked here without exit
     existing_park = ClientParking.query.filter_by(client_id=client_id, parking_id=parking_id, time_out=None).first()
     if existing_park:
-        return jsonify({'error': 'Client already parked here and did not exit'}), 400
+        return jsonify(
+            {'error': 'Client already parked here and did not exit'}), 400
     new_client_parking = ClientParking(
         client_id=client_id,
         parking_id=parking_id,
