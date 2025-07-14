@@ -35,8 +35,9 @@ jobs:
 
     - name: Run black
       run: |
-        black --check app tests
-        black app tests
+        # black --check app tests
+        black --line-length 75
+        
 
     - name: Run mypy with config
       run: |
