@@ -1,12 +1,14 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, Response
 from datetime import datetime
+from typing import Any
+
 from .models import db, Client, Parking, ClientParking
 
 bp = Blueprint("main", __name__)
 
 
 @bp.route("/clients", methods=["GET"])
-def get_clients():
+def get_clients() -> Response:
     clients = Client.query.all()
     return jsonify(
         [
@@ -21,7 +23,7 @@ def get_clients():
 
 
 @bp.route("/clients/<int:client_id>", methods=["GET"])
-def get_client(client_id):
+def get_client(client_id: int) -> Response:
     client = Client.query.get_or_404(client_id)
     return jsonify(
         {
@@ -35,7 +37,7 @@ def get_client(client_id):
 
 
 @bp.route("/clients", methods=["POST"])
-def create_client():
+def create_client() -> tuple[Response, int]:
     data = request.get_json()
     if not data or "name" not in data or "surname" not in data:
         return jsonify({"error": "Name and surname are required"}), 400
@@ -51,7 +53,7 @@ def create_client():
 
 
 @bp.route("/parkings", methods=["POST"])
-def create_parking():
+def create_parking() -> tuple[Response, int]:
     data = request.get_json()
     if not data or "address" not in data or "count_places" not in data:
         return (
@@ -76,7 +78,7 @@ def create_parking():
 
 
 @bp.route("/client_parkings", methods=["POST"])
-def client_parking_in():
+def client_parking_in() -> tuple[Response, int]:
     data = request.get_json()
     if not data or "client_id" not in data or "parking_id" not in data:
         return jsonify({"error": "client_id and parking_id required"}), 400
@@ -93,7 +95,7 @@ def client_parking_in():
             jsonify({"error": "Client must have a credit card to park"}),
             400,
         )
-        # Check if client already parked here without exit
+
     existing_park = ClientParking.query.filter_by(
         client_id=client_id, parking_id=parking_id, time_out=None
     ).first()
@@ -102,6 +104,7 @@ def client_parking_in():
             jsonify({"error": "Client already parked here and did not exit"}),
             400,
         )
+
     new_client_parking = ClientParking(
         client_id=client_id,
         parking_id=parking_id,
@@ -112,9 +115,8 @@ def client_parking_in():
     db.session.commit()
     return jsonify({"id": new_client_parking.id}), 201
 
-
 @bp.route("/client_parkings", methods=["DELETE"])
-def client_parking_out():
+def client_parking_out() -> tuple[Response, int]:
     data = request.get_json()
     if not data or "client_id" not in data or "parking_id" not in data:
         return jsonify({"error": "client_id and parking_id required"}), 400

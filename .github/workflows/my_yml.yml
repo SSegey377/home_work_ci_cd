@@ -8,11 +8,18 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v4
@@ -26,31 +33,23 @@ jobs:
 
     - name: Install dev tools
       run: |
-      
         pip install --upgrade mypy flake8 black pytest
-        
-        
 
     - name: Run flake8
       run: |
         flake8 app tests --count --show-source --statistics --max-line-length=88
 
     - name: Run black
-      run: |        
+      run: |
         black --check --line-length 88 app tests
-        
-        
 
-#    - name: Run mypy with config
-#      run: |
-#        pip install --upgrade mypy
-#        mypy --config-file=mypy.ini --exclude site-packages --no-site-packages app/
-#
-        
+    - name: Run mypy with config
+      run: |
+        pip install --upgrade mypy
+        mypy --config-file=mypy.ini --exclude site-packages app/
 
     - name: Run tests
       run: |
-        # Создаем тестовую БД и заполняем данными
         python -c "
         from app import create_app, db
         from app.models import Client, Parking
