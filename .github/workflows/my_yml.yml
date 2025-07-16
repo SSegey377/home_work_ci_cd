@@ -26,7 +26,8 @@ jobs:
 
     - name: Install dev tools
       run: |
-        pip install mypy flake8 black pytest
+      
+        pip install --upgrade mypy flake8 black pytest
         
         
 
