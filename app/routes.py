@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
 from datetime import datetime
-#from typing import Any
 
 from .models import db, Client, Parking, ClientParking
 
@@ -114,6 +113,7 @@ def client_parking_in() -> tuple[Response, int]:
     parking.count_available_places -= 1
     db.session.commit()
     return jsonify({"id": new_client_parking.id}), 201
+
 
 @bp.route("/client_parkings", methods=["DELETE"])
 def client_parking_out() -> tuple[Response, int]:
