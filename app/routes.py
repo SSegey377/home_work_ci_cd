@@ -61,9 +61,7 @@ def create_parking():
     count_places = data["count_places"]
     if not isinstance(count_places, int) or count_places < 0:
         return (
-            jsonify(
-                {"error": "count_places must be a non-negative integer"}
-            ),
+            jsonify({"error": "count_places must be a non-negative integer"}),
             400,
         )
     new_parking = Parking(
@@ -101,9 +99,7 @@ def client_parking_in():
     ).first()
     if existing_park:
         return (
-            jsonify(
-                {"error": "Client already parked here and did not exit"}
-            ),
+            jsonify({"error": "Client already parked here and did not exit"}),
             400,
         )
     new_client_parking = ClientParking(
