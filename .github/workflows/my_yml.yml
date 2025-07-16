@@ -32,7 +32,7 @@ jobs:
 
     - name: Run flake8
       run: |
-        flake8 app tests --count --show-source --statistics
+        flake8 app tests --count --show-source --statistics --max-line-length=88
 
     - name: Run black
       run: |        
