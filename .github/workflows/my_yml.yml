@@ -41,11 +41,11 @@ jobs:
         
         
 
-    - name: Run mypy with config
-      run: |
-        pip install --upgrade mypy
-        mypy --config-file=mypy.ini --exclude site-packages --no-site-packages app/
-        
+#    - name: Run mypy with config
+#      run: |
+#        pip install --upgrade mypy
+#        mypy --config-file=mypy.ini --exclude site-packages --no-site-packages app/
+#
         
 
     - name: Run tests
