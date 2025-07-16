@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, Response
 from datetime import datetime
-from typing import Any
+#from typing import Any
 
 from .models import db, Client, Parking, ClientParking
 

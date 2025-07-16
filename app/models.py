@@ -1,10 +1,16 @@
-# models.py
-
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, UniqueConstraint
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Boolean,
+    DateTime,
+    ForeignKey,
+    UniqueConstraint,
+)
 from sqlalchemy.orm import relationship
-from datetime import datetime
-from typing import Optional
+# from datetime import datetime
+# from typing import Optional
 
 # СОЗДАЁМ ЭКЗЕМПЛЯР db ЗДЕСЬ, чтобы избежать проблем с импортом
 db = SQLAlchemy()
@@ -54,4 +60,6 @@ class ClientParking(db.Model):
     )
 
     def __repr__(self) -> str:
-        return f"<ClientParking ClientID: {self.client_id}, ParkingID: {self.parking_id}>"
+        return (
+            f"<ClientParking ClientID: {self.client_id}, ParkingID: {self.parking_id}>"
+        )
